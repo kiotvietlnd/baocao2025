@@ -15,86 +15,100 @@
 }
 
 body {
-  background-color: #d9f99d; /* Lime 200 - darker shade for body background */
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
+  background-color: #2e353d; /* Dark background for presentation mode */
   margin: 0;
-  min-height: 100vh;
-  padding: 20px 0;
-  place-items: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Inter', sans-serif;
+  overflow: hidden; /* Prevent body scroll */
 }
 
+/* Slide Container Styles */
 .slide-container {
   align-items: center;
   background-color: #f7fee7; /* Very light lime/cream for slide background */
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 60, 0, 0.1); /* Greenish shadow */
-  display: flex;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default for slideshow */
   flex-direction: column;
   height: 720px;
-  justify-content: center;
+  justify-content: flex-start; /* Changed to flex-start to control top spacing better */
   overflow: hidden;
-  padding: 60px;
+  padding: 40px 60px; /* Reduced top padding slightly */
   position: relative;
   width: 1280px;
   border: 1px solid #d9f99d;
 }
 
-/* KiotViet Logo (CSS Implementation) */
+.slide-container.active {
+    display: flex; /* Only show active slide */
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* KiotViet Logo */
 .logo-container {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 50px;
     z-index: 10;
-    width: 180px; /* Adjusted width for the new JPG logo */
+    width: 160px;
 }
 
 .logo-container img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 8px; /* Soft edges for JPG */
-    mix-blend-mode: multiply; /* Blends white background with slide color */
+    border-radius: 8px;
+    mix-blend-mode: multiply;
 }
 
 
-/* 2. TYPOGRAPHY */
+/* 2. TYPOGRAPHY & HEADER ADJUSTMENTS */
 
 h1, h2, h3, h4, p, li {
-  color: #1e293b; /* Slate 800 */
+  color: #1e293b;
 }
 
+/* Title Slide H1 */
 .slide-container h1 {
   font-size: 56px;
   font-weight: 800;
   line-height: 1.2;
-  color: #005fa3; /* KiotViet Blue */
+  color: #005fa3;
   margin-bottom: 20px;
 }
 
+/* Standard Slide Title - Adjusted as requested */
 .slide-container .slide-title {
-  font-size: 42px;
+  font-size: 36px; /* Reduced from 42px */
   font-weight: 700;
-  color: #005fa3; /* KiotViet Blue */
-  margin-bottom: 40px;
+  color: #005fa3;
+  margin-top: 60px; /* Push down below logo level */
+  margin-bottom: 30px;
   width: 100%;
   text-align: left;
-  border-left: 8px solid #84cc16; /* Lime Accent */
+  border-left: 8px solid #84cc16;
   padding-left: 20px;
+  line-height: 1.2;
 }
 
 .slide-container h3 {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
-  color: #166534; /* Green 800 */
-  margin-bottom: 12px;
+  color: #166534;
+  margin-bottom: 10px;
 }
 
 .slide-container p, .slide-container li {
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5; /* Slightly tighter line height to save space */
   color: #334155;
 }
 
@@ -111,7 +125,7 @@ h1, h2, h3, h4, p, li {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  justify-content: center;
+  /* justify-content: center; Remove to allow top-down flow with margin */
 }
 
 /* Two Column */
@@ -121,7 +135,8 @@ h1, h2, h3, h4, p, li {
   gap: 40px;
   width: 100%;
   height: 100%;
-  align-items: center;
+  align-items: flex-start; /* Align top */
+  padding-top: 20px;
 }
 
 .two-column.tiled {
@@ -141,7 +156,7 @@ h1, h2, h3, h4, p, li {
   border-radius: 12px;
   overflow: hidden;
   height: 100%;
-  max-height: 450px;
+  max-height: 400px; /* Reduced max-height slightly */
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 .image-wrapper img {
@@ -150,18 +165,19 @@ h1, h2, h3, h4, p, li {
   object-fit: cover;
 }
 
-/* Tiled Content */
+/* Tiled Content (Flex/Grid Hybrid) */
 .tiled-content {
   display: flex;
   gap: 30px;
   width: 100%;
   justify-content: center;
+  padding-top: 10px;
 }
 
 .tile {
   flex: 1;
   background: white;
-  padding: 30px;
+  padding: 25px; /* Reduced padding slightly */
   border-radius: 12px;
   text-align: left;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -171,44 +187,61 @@ h1, h2, h3, h4, p, li {
 }
 
 .tile .icon {
-    font-size: 40px;
+    font-size: 36px;
     color: #84cc16;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     align-self: flex-start;
+}
+
+/* GRID LAYOUT FOR SLIDE 8 (FIXED) */
+.grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    max-height: 480px; /* Constrain height */
+}
+.grid-2x2 .tile {
+    margin: 0 !important; /* Remove manual margins */
+    min-width: 0; /* Prevent overflow */
 }
 
 /* Bullet List */
 .bullet-list ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 .bullet-list li {
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 15px;
+    padding-left: 30px;
+    margin-bottom: 12px;
 }
 .bullet-list li::before {
-    content: "\f00c"; /* FontAwesome Check */
+    content: "\f00c";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
     left: 0;
     color: #84cc16;
-    font-size: 20px;
+    font-size: 18px;
     top: 3px;
 }
 
-/* Full BG */
+/* Full BG Slide 10 */
 .full-bg-image {
     background-size: cover;
     background-position: center;
     position: relative;
+    justify-content: center; /* Center content vertically for cover slide */
 }
 .full-bg-image::before {
     content: '';
     position: absolute;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(0, 34, 72, 0.85); /* KiotViet Blue Overlay - slightly darker for legibility */
+    background: rgba(0, 34, 72, 0.85);
     z-index: 1;
 }
 .full-bg-image .content-overlay {
@@ -226,6 +259,11 @@ h1, h2, h3, h4, p, li {
     font-size: 28px;
 }
 
+/* Slide 1 Centering Override */
+#slide1 {
+    justify-content: center;
+}
+
 /* Decoration */
 .decorative-blob {
     position: absolute;
@@ -239,12 +277,63 @@ h1, h2, h3, h4, p, li {
 .blob-1 { top: -100px; right: -100px; }
 .blob-2 { bottom: -100px; left: -100px; }
 
+/* CONTROLS */
+.controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-control {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #005fa3;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.btn-control:hover {
+    background: #00467a;
+}
+.btn-control:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.slide-counter {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    color: #64748b; /* Use a lighter color for visibility on dark bg, or dark on light */
+    color: white; /* On dark body bg */
+    font-size: 18px;
+    font-weight: 500;
+    z-index: 100;
+    opacity: 0.7;
+}
+
 </style>
 </head>
 <body>
 
+<!-- Slide Counter -->
+<div class="slide-counter" id="slideCounter">1 / 10</div>
 
-<div class="slide-container" id="slide1">
+<!-- SLIDE 1: Title -->
+<div class="slide-container active" id="slide1">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <div class="decorative-blob blob-1"></div>
     <div class="decorative-blob blob-2"></div>
@@ -258,7 +347,7 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 2: Agenda -->
 <div class="slide-container" id="slide2">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <h2 class="slide-title">Tóm tắt nội dung chính</h2>
@@ -283,10 +372,10 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 3: Data Overview -->
 <div class="slide-container" id="slide3">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
-    <h2 class="slide-title">P1. Tổng quan: Số liệu tổng kết hoạt động đào tạo 2025</h2>
+    <h2 class="slide-title">P1. Tổng quan: Số liệu đào tạo 2025</h2>
     <div class="content-area">
         <div class="two-column tiled">
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #ecfccb;">
@@ -311,10 +400,10 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 4: Feedback -->
 <div class="slide-container" id="slide4">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
-    <h2 class="slide-title">P1. Phản hồi khảo sát sau đào tạo (CSAT)</h2>
+    <h2 class="slide-title">P1. Phản hồi khảo sát (CSAT)</h2>
     <div class="content-area">
         <div class="two-column">
             <div>
@@ -336,7 +425,7 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 5: Partnership -->
 <div class="slide-container" id="slide5">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <h2 class="slide-title">P1. Phối hợp đối tác & Chuyển giao</h2>
@@ -360,7 +449,7 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 6: Lessons Learned -->
 <div class="slide-container" id="slide6">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <h2 class="slide-title">P2. Đúc kết bài học chuyên môn</h2>
@@ -369,32 +458,32 @@ h1, h2, h3, h4, p, li {
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-pen-ruler"></i></div>
                 <h3>Thiết kế chương trình</h3>
-                <p><strong>TNA:</strong> Dùng mô hình BEM xác định đúng vấn đề, thống nhất kỳ vọng với DSD/SM.</p>
-                <p><strong>Tối ưu:</strong> Áp dụng LTEM & Bloom, loại bỏ "Nice to know", tập trung "Need to know".</p>
-                <p><strong>SME:</strong> Đóng gói "know-how" thành quy trình đơn giản.</p>
+                <p><strong>TNA:</strong> Dùng mô hình BEM xác định vấn đề.</p>
+                <p><strong>Tối ưu:</strong> Áp dụng LTEM & Bloom, tập trung "Need to know".</p>
+                <p><strong>SME:</strong> Đóng gói "know-how" thành quy trình.</p>
             </div>
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3>Thiết kế trải nghiệm học tập</h3>
-                <p><strong>Cấu trúc:</strong> Mô hình 4Cs (Connect - Concept - Concrete - Conclusion).</p>
-                <p><strong>Tương tác:</strong> Think-pair-share, Poll & Predict, Thảo luận nhóm.</p>
-                <p><strong>Đa dạng:</strong> Training, Coaching, Talkshow, Roleplay với AI Agent.</p>
+                <h3>Thiết kế trải nghiệm</h3>
+                <p><strong>Cấu trúc:</strong> Mô hình 4Cs.</p>
+                <p><strong>Tương tác:</strong> Think-pair-share, Poll & Predict, Thảo luận.</p>
+                <p><strong>Đa dạng:</strong> Training, Coaching, Roleplay AI.</p>
             </div>
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <h3>Triển khai & Đứng lớp</h3>
-                <p><strong>Môi trường:</strong> Tạo môi trường an toàn để học viên dám sai và sửa; điều chỉnh ngôn từ phù hợp.</p>
-                <p><strong>Phương pháp:</strong> Kết hợp linh hoạt giữa thuyết giảng, kể chuyện (storytelling) và hoạt động nhóm.</p>
-                <p><strong>Động lực:</strong> Thúc đẩy bằng ghi nhận kịp thời và hỗ trợ hoàn thành nhiệm vụ.</p>
+                <p><strong>Môi trường:</strong> An toàn để sai và sửa.</p>
+                <p><strong>Phương pháp:</strong> Thuyết giảng kết hợp Storytelling.</p>
+                <p><strong>Động lực:</strong> Ghi nhận kịp thời.</p>
             </div>
         </div>
     </div>
 </div>
 
-
+<!-- SLIDE 7: Personal Goals -->
 <div class="slide-container" id="slide7">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
-    <h2 class="slide-title">P3. Mục tiêu: Phát triển năng lực cá nhân</h2>
+    <h2 class="slide-title">P3. Mục tiêu: Phát triển năng lực</h2>
     <div class="content-area">
         <div class="two-column">
             <div class="image-wrapper">
@@ -404,13 +493,13 @@ h1, h2, h3, h4, p, li {
                 <div class="bullet-list">
                     <ul>
                         <li>
-                            <strong>Nâng cao chuyên môn:</strong> Hoàn thiện kỹ năng thiết kế chương trình, thiết kế trải nghiệm học và triển khai theo chuẩn; nghiên cứu sâu năng lực Coaching.
+                            <strong>Nâng cao chuyên môn:</strong> Hoàn thiện kỹ năng thiết kế chương trình và trải nghiệm học theo chuẩn; nghiên cứu sâu năng lực Coaching.
                         </li>
                         <li>
-                            <strong>Tối ưu hiệu suất:</strong> Chuyển dịch mạnh mẽ sang mô hình <strong>Blended Learning</strong> (E-learning + Offline + Coaching) để tinh gọn giờ giảng.
+                            <strong>Tối ưu hiệu suất:</strong> Chuyển dịch mạnh mẽ sang mô hình <strong>Blended Learning</strong> (E-learning + Offline + Coaching).
                         </li>
                         <li>
-                            <strong>Quản trị dự án:</strong> Kiểm soát tiến độ chính xác; chủ động tham vấn nguồn lực từ Trưởng phòng và đồng nghiệp.
+                            <strong>Quản trị dự án:</strong> Kiểm soát tiến độ chính xác; chủ động tham vấn nguồn lực.
                         </li>
                     </ul>
                 </div>
@@ -419,28 +508,29 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 8: Telesale Plan (FIXED OVERFLOW) -->
 <div class="slide-container" id="slide8">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <h2 class="slide-title">P3. Kế hoạch: Kênh Telesale SG</h2>
     <div class="content-area">
-        <div class="tiled-content" style="flex-wrap: wrap;">
-            <div class="tile" style="flex: 1 1 40%; min-width: 400px;">
+        <!-- Changed to Grid Layout for perfect fit -->
+        <div class="grid-2x2">
+            <div class="tile">
                 <div class="icon"><i class="fa-solid fa-compress-arrows-alt"></i></div>
                 <h3>Tinh gọn lộ trình</h3>
                 <p>Rút xuống còn 4 khóa trọng tâm bám sát khung năng lực.</p>
             </div>
-            <div class="tile" style="flex: 1 1 40%; min-width: 400px;">
+            <div class="tile">
                 <div class="icon"><i class="fa-solid fa-gauge-high"></i></div>
                 <h3>Tăng tốc độ hội nhập</h3>
                 <p>Nhân sự hoàn thiện khung năng lực sau 4 tháng (E-learning & Offline).</p>
             </div>
-            <div class="tile" style="flex: 1 1 40%; min-width: 400px; margin-top: 20px;">
+            <div class="tile">
                 <div class="icon"><i class="fa-solid fa-expand"></i></div>
                 <h3>Mở rộng phạm vi</h3>
                 <p>Thiết kế module đào tạo chuyên biệt cho team Sale FnB.</p>
             </div>
-            <div class="tile" style="flex: 1 1 40%; min-width: 400px; margin-top: 20px;">
+            <div class="tile">
                 <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
                 <h3>Đánh giá hiệu quả</h3>
                 <p>Phối hợp với SM đo lường kết quả sau đào tạo (Level 3 - Behavior).</p>
@@ -449,7 +539,7 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 9: Direct Sale & Renewal -->
 <div class="slide-container" id="slide9">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <h2 class="slide-title">P3. Kế hoạch: Direct Sale & Tái Ký</h2>
@@ -479,7 +569,7 @@ h1, h2, h3, h4, p, li {
     </div>
 </div>
 
-
+<!-- SLIDE 10: Thank You -->
 <div class="slide-container full-bg-image" id="slide10" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop');">
     <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
     <div class="content-overlay">
@@ -491,6 +581,62 @@ h1, h2, h3, h4, p, li {
         <p style="font-size: 20px; font-weight: 700;">Trần Linh Trang</p>
     </div>
 </div>
+
+<!-- Navigation Controls -->
+<div class="controls">
+    <button class="btn-control" id="prevBtn" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="btn-control" id="nextBtn" onclick="nextSlide()"><i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide-container');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlide() {
+        slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            } else {
+                slide.classList.remove('active');
+            }
+        });
+        counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        
+        // Update button states
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+        }
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+        }
+    });
+
+    // Initialize
+    updateSlide();
+</script>
 
 </body>
 </html>
