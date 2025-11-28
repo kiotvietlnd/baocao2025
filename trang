@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Đào tạo 2025 - KiotViet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. THE SETUP */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #d9f99d; /* Lime 200 - darker shade for body background */
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 0;
+  place-items: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.slide-container {
+  align-items: center;
+  background-color: #f7fee7; /* Very light lime/cream for slide background */
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 60, 0, 0.1); /* Greenish shadow */
+  display: flex;
+  flex-direction: column;
+  height: 720px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+  border: 1px solid #d9f99d;
+}
+
+/* KiotViet Logo (CSS Implementation) */
+.logo-container {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    z-index: 10;
+    width: 180px; /* Adjusted width for the new JPG logo */
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Soft edges for JPG */
+    mix-blend-mode: multiply; /* Blends white background with slide color */
+}
+
+
+/* 2. TYPOGRAPHY */
+
+h1, h2, h3, h4, p, li {
+  color: #1e293b; /* Slate 800 */
+}
+
+.slide-container h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #005fa3; /* KiotViet Blue */
+  margin-bottom: 20px;
+}
+
+.slide-container .slide-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #005fa3; /* KiotViet Blue */
+  margin-bottom: 40px;
+  width: 100%;
+  text-align: left;
+  border-left: 8px solid #84cc16; /* Lime Accent */
+  padding-left: 20px;
+}
+
+.slide-container h3 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #166534; /* Green 800 */
+  margin-bottom: 12px;
+}
+
+.slide-container p, .slide-container li {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* 3. LAYOUTS */
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+/* Two Column */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.two-column.tiled {
+    align-items: stretch;
+}
+
+.two-column.tiled > div {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+
+/* Image Right */
+.image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  max-height: 450px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tiled Content */
+.tiled-content {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tile {
+  flex: 1;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-top: 5px solid #84cc16;
+  display: flex;
+  flex-direction: column;
+}
+
+.tile .icon {
+    font-size: 40px;
+    color: #84cc16;
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+/* Bullet List */
+.bullet-list ul {
+    list-style: none;
+    padding: 0;
+}
+.bullet-list li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 15px;
+}
+.bullet-list li::before {
+    content: "\f00c"; /* FontAwesome Check */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: #84cc16;
+    font-size: 20px;
+    top: 3px;
+}
+
+/* Full BG */
+.full-bg-image {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.full-bg-image::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0, 34, 72, 0.85); /* KiotViet Blue Overlay - slightly darker for legibility */
+    z-index: 1;
+}
+.full-bg-image .content-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+.full-bg-image h2 {
+    color: #d9f99d;
+    font-size: 60px;
+}
+.full-bg-image p {
+    color: white;
+    font-size: 28px;
+}
+
+/* Decoration */
+.decorative-blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #ecfccb;
+    border-radius: 50%;
+    filter: blur(50px);
+    z-index: 0;
+}
+.blob-1 { top: -100px; right: -100px; }
+.blob-2 { bottom: -100px; left: -100px; }
+
+</style>
+</head>
+<body>
+
+
+<div class="slide-container" id="slide1">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <div class="decorative-blob blob-1"></div>
+    <div class="decorative-blob blob-2"></div>
+    <div style="text-align: center; z-index: 1; max-width: 900px;">
+        <h3 style="color: #65a30d; text-transform: uppercase; letter-spacing: 2px; font-size: 20px;">Báo cáo Tổng kết hoạt động</h3>
+        <h1>Đào tạo Năm 2025 &<br>Kế hoạch Mục tiêu 2026</h1>
+        <hr style="width: 100px; border: 3px solid #84cc16; margin: 30px auto;">
+        <p class="subtitle" style="color: #005fa3; font-weight: 700;">Trần Linh Trang</p>
+        <p style="font-size: 20px;">Chuyên viên đào tạo</p>
+        <p style="margin-top: 20px; font-size: 16px; color: #64748b;">Kỳ đánh giá: Năm 2025</p>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide2">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">Tóm tắt nội dung chính</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <h3>Phần 1</h3>
+                <p>Tổng quan kết quả đào tạo năm 2025: Kết quả số liệu, đánh giá phản hồi và Sự hợp tác.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                <h3>Phần 2</h3>
+                <p>Đúc kết bài học chuyên môn: Thiết kế chương trình, thiết kế trải nghiệm học tập và triển khai đứng lớp.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+                <h3>Phần 3</h3>
+                <p>Mục tiêu cải tiến & Kế hoạch hành động năm 2026.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide3">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P1. Tổng quan: Số liệu tổng kết hoạt động đào tạo 2025</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: #ecfccb;">
+                <div style="font-size: 80px; font-weight: 800; color: #005fa3;">100</div>
+                <p style="font-weight: 700;">Lớp học đã triển khai</p>
+                <div style="margin-top: 20px; font-size: 40px; font-weight: 700; color: #166534;">861</div>
+                <p>Học viên tham gia</p>
+                <div style="margin-top: 10px; font-size: 16px; color: #65a30d;">(Chiếm 35% toàn công ty)</div>
+            </div>
+            <div>
+                <h3><i class="fa-solid fa-layer-group"></i> Cơ cấu chương trình</h3>
+                <ul style="margin-bottom: 20px;">
+                    <li><strong>94</strong> Chương trình Kỹ năng (Skillsets)</li>
+                    <li><strong>03</strong> Chương trình Văn hóa doanh nghiệp</li>
+                    <li><strong>03</strong> Workshops chuyên đề</li>
+                </ul>
+                <h3><i class="fa-solid fa-users-viewfinder"></i> Đối tượng trọng tâm</h3>
+                <p>Telesale, Direct Sale, Back Office.</p>
+                <p style="margin-top: 15px; font-style: italic; font-size: 16px;">*Tổng thời lượng: 300 giờ (Chiếm 31% tổng số CTĐT).</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide4">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P1. Phản hồi khảo sát sau đào tạo (CSAT)</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <div style="font-size: 100px; font-weight: 800; color: #005fa3; line-height: 1;">98.9%</div>
+                <p style="font-size: 24px; font-weight: 600; color: #65a30d; margin-bottom: 30px;">Mức độ hài lòng từ học viên</p>
+                
+                <div class="bullet-list">
+                    <ul>
+                        <li><strong>Giảng viên:</strong> Phương pháp truyền đạt mạch lạc, dẫn dắt trọng tâm, giải quyết tình huống thực tế hiệu quả.</li>
+                        <li><strong>Không khí lớp học:</strong> Tương tác cao, năng lượng tích cực, duy trì sự tập trung tốt.</li>
+                        <li><strong>Tính ứng dụng:</strong> Nội dung sát sườn thực tế, có khả năng áp dụng ngay sau đào tạo.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" alt="Happy employees in a training workshop">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide5">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P1. Phối hợp đối tác & Chuyển giao</h2>
+    <div class="content-area">
+        <div class="bullet-list" style="background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); width: 100%;">
+            <ul>
+                <li>
+                    <strong>Đồng thuận chiến lược (TSSGN):</strong> Thống nhất phương pháp và lộ trình đào tạo với Quản lý sàn Telesale Sài Gòn; phối hợp tham gia cố vấn tại buổi đào tạo.
+                </li>
+                <li>
+                    <strong>Chuẩn hóa lộ trình:</strong> Hoàn thiện khung 6 chương trình bắt buộc cho nhân sự thử việc (từ tháng 2 đến < 6 tháng) tại TSSGN trong Quý 2, 3, 4/2025.
+                </li>
+                <li>
+                    <strong>Thiết kế & Tối ưu:</strong> Làm mới và tối ưu hóa 10 chương trình cho đối tác Telesale, Direct Sale và Back Office.
+                </li>
+                <li>
+                    <strong>Chuyển giao chương trình đào tạo:</strong> Đóng gói và hướng dẫn chuyển giao thành công 03 chương trình cho nhân sự mới trong team.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide6">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P2. Đúc kết bài học chuyên môn</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-pen-ruler"></i></div>
+                <h3>Thiết kế chương trình</h3>
+                <p><strong>TNA:</strong> Dùng mô hình BEM xác định đúng vấn đề, thống nhất kỳ vọng với DSD/SM.</p>
+                <p><strong>Tối ưu:</strong> Áp dụng LTEM & Bloom, loại bỏ "Nice to know", tập trung "Need to know".</p>
+                <p><strong>SME:</strong> Đóng gói "know-how" thành quy trình đơn giản.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Thiết kế trải nghiệm học tập</h3>
+                <p><strong>Cấu trúc:</strong> Mô hình 4Cs (Connect - Concept - Concrete - Conclusion).</p>
+                <p><strong>Tương tác:</strong> Think-pair-share, Poll & Predict, Thảo luận nhóm.</p>
+                <p><strong>Đa dạng:</strong> Training, Coaching, Talkshow, Roleplay với AI Agent.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <h3>Triển khai & Đứng lớp</h3>
+                <p><strong>Môi trường:</strong> Tạo môi trường an toàn để học viên dám sai và sửa; điều chỉnh ngôn từ phù hợp.</p>
+                <p><strong>Phương pháp:</strong> Kết hợp linh hoạt giữa thuyết giảng, kể chuyện (storytelling) và hoạt động nhóm.</p>
+                <p><strong>Động lực:</strong> Thúc đẩy bằng ghi nhận kịp thời và hỗ trợ hoàn thành nhiệm vụ.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide7">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P3. Mục tiêu: Phát triển năng lực cá nhân</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" alt="Professional woman planning strategy">
+            </div>
+            <div style="padding-left: 20px;">
+                <div class="bullet-list">
+                    <ul>
+                        <li>
+                            <strong>Nâng cao chuyên môn:</strong> Hoàn thiện kỹ năng thiết kế chương trình, thiết kế trải nghiệm học và triển khai theo chuẩn; nghiên cứu sâu năng lực Coaching.
+                        </li>
+                        <li>
+                            <strong>Tối ưu hiệu suất:</strong> Chuyển dịch mạnh mẽ sang mô hình <strong>Blended Learning</strong> (E-learning + Offline + Coaching) để tinh gọn giờ giảng.
+                        </li>
+                        <li>
+                            <strong>Quản trị dự án:</strong> Kiểm soát tiến độ chính xác; chủ động tham vấn nguồn lực từ Trưởng phòng và đồng nghiệp.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide8">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P3. Kế hoạch: Kênh Telesale SG</h2>
+    <div class="content-area">
+        <div class="tiled-content" style="flex-wrap: wrap;">
+            <div class="tile" style="flex: 1 1 40%; min-width: 400px;">
+                <div class="icon"><i class="fa-solid fa-compress-arrows-alt"></i></div>
+                <h3>Tinh gọn lộ trình</h3>
+                <p>Rút xuống còn 4 khóa trọng tâm bám sát khung năng lực.</p>
+            </div>
+            <div class="tile" style="flex: 1 1 40%; min-width: 400px;">
+                <div class="icon"><i class="fa-solid fa-gauge-high"></i></div>
+                <h3>Tăng tốc độ hội nhập</h3>
+                <p>Nhân sự hoàn thiện khung năng lực sau 4 tháng (E-learning & Offline).</p>
+            </div>
+            <div class="tile" style="flex: 1 1 40%; min-width: 400px; margin-top: 20px;">
+                <div class="icon"><i class="fa-solid fa-expand"></i></div>
+                <h3>Mở rộng phạm vi</h3>
+                <p>Thiết kế module đào tạo chuyên biệt cho team Sale FnB.</p>
+            </div>
+            <div class="tile" style="flex: 1 1 40%; min-width: 400px; margin-top: 20px;">
+                <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Đánh giá hiệu quả</h3>
+                <p>Phối hợp với SM đo lường kết quả sau đào tạo (Level 3 - Behavior).</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide9">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <h2 class="slide-title">P3. Kế hoạch: Direct Sale & Tái Ký</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3 style="color: #005fa3; border-bottom: 2px solid #84cc16; padding-bottom: 10px;">Kênh Direct Sale (MN)</h3>
+                <div class="bullet-list">
+                    <ul>
+                        <li><strong>Chuyển đổi:</strong> 05 khóa kỹ năng nền tảng sang E-learning + Thực hành.</li>
+                        <li><strong>Chuẩn hóa:</strong> Lộ trình đào tạo 2 tháng thử việc & Bộ tiêu chí đánh giá.</li>
+                        <li><strong>Linh hoạt:</strong> Triển khai các lớp On-demand từ đối tác.</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: #005fa3; border-bottom: 2px solid #84cc16; padding-bottom: 10px;">Kênh Tái Ký</h3>
+                <div class="bullet-list">
+                    <ul>
+                        <li><strong>Thử nghiệm Coaching:</strong> Thí điểm tại Tái Ký HCM (1 tháng).</li>
+                        <li><strong>Đào tạo quy trình:</strong> Module "Tư vấn gia hạn & Kỹ năng thuyết phục" cho nhân sự mới.</li>
+                        <li><strong>Coaching nhóm:</strong> Nghiên cứu và triển khai theo nhu cầu.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container full-bg-image" id="slide10" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop');">
+    <div class="logo-container"><img src="https://i.postimg.cc/8Cmd7gzq/Dpua6y-Ab9Vx-L4Pl-Xaw-IEJFg-Fgg9Nd-CRx-1748317039-e15f27f0ab204bd034f2e127ca553835.png" alt="KiotViet Logo"></div>
+    <div class="content-overlay">
+        <h2>Xin cảm ơn!</h2>
+        <p style="max-width: 800px; margin: 20px auto; line-height: 1.5;">
+            Cảm ơn anh chị em đã hỗ trợ Trang trong thời gian qua và sắp tới nhé!
+        </p>
+        <hr style="width: 150px; border: 2px solid #84cc16; margin: 30px auto;">
+        <p style="font-size: 20px; font-weight: 700;">Trần Linh Trang</p>
+    </div>
+</div>
+
+</body>
+</html>
